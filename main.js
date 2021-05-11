@@ -18,29 +18,14 @@ async function fetchRecipe(food) {
 const requestUrl = `https://api.edamam.com/search?q=${food}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=6`;
 const response = await fetch (requestUrl);
 const data = await response.json();
-const recipes = data.hits[0, 1, 2, 3, 4, 5];
-recipeName.innerHTML = foodToSearch
-calorieInformation.innerHTML += recipes.recipe.calories;
-recipeName.innerText= recipes.recipe.label;
-linkButton.href= recipes.recipe.url;gi
-recipeImage.innerText= recipes.recipe.healthLabels.image;
+const recipeHits = data.hits[0];
+
+calorieInformation.innerHTML +=  recipeHits.recipe.calories;
+recipeName.innerText= recipeHits.recipe.label;
+linkButton.href= recipeHits.recipe.url;
+recipeImage.src= recipeHits.recipe.image;
 console.log(data.hits);
-
-
-// food.map((recipes)=> { foodToSearch += recipes.recipe.label;
-
-// });
 }
-
-
-
-// function addToHtml (searchResults)
-// //  loop through array
-// // add the data to the created html 
-// let element = 
-
-
-
 
 
 
