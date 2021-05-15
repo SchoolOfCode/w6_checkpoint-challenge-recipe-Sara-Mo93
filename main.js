@@ -1,41 +1,49 @@
-const APP_ID = "f9a8cc79";
-const APP_KEY = "ce118f0a4e97bdffc78a0ab134eec3ea";
-let calorieInformation= document.getElementById("info")
-let linkButton= document.getElementById("view-button")
-let recipeName= document.getElementById("recipe-label")
-let recipeImage= document.getElementById("image")
-let foodToSearch = null;
+const APP_ID = "f9a8cc79";
+const APP_KEY = "ce118f0a4e97bdffc78a0ab134eec3ea";
+let informationSection = document.getElementById("food-display");
 
-function handleRecipeClick() {
-fetchRecipe(foodToSearch);
+let foodToSearch = null;
+function handleRecipeClick() {
+	fetchRecipe(foodToSearch);
+	return foodToSearch;
 }
 
-function handleFoodChange() {
-foodToSearch = document.querySelector("#food-input").value;
+function handleFoodChange() {
+	foodToSearch = document.querySelector("#food-input").value;
 }
 
-async function fetchRecipe(food) {
-const requestUrl = `https://api.edamam.com/search?q=${food}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=6`;
-const response = await fetch (requestUrl);
-const data = await response.json();
-const recipeHits = data.hits[0];
-
-calorieInformation.innerHTML +=  recipeHits.recipe.calories;
-recipeName.innerText= recipeHits.recipe.label;
-linkButton.href= recipeHits.recipe.url;
-recipeImage.src= recipeHits.recipe.image;
-console.log(data.hits);
+async function fetchRecipe(food) {
+	const requestUrl = `https://api.edamam.com/search?q=${food}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=6`;
+	const response = await fetch(requestUrl);
+	let { hits } = await response.json();
+	for (let i = 0; i < hits.length; i++) {
+		HTMLDisplay(hits[i].recipe);
+	}
 }
 
+function HTMLDisplay(data) {
+	let calorieInformation = document.createElement("p");
+	let diet = document.createElement("p");
+	let cuisine = document.createElement("p");
+	let linkTag = document.createElement("a");
+	let recipeName = document.createElement("h1");
+	let recipeImage = document.createElement("img");
 
+	// console.log(data.calories);
 
+	calorieInformation.innerHTML = "Calories:" + data.calories;
+	diet.innerText = "diet:" + data.dietLabels;
+	cuisine.innerText = "cuisine:" + data.cuisineType;
+	recipeName.innerText = data.label;
+	linkTag.innerHTML = "follow this recipe ";
+	linkTag.href = data.url;
+	recipeImage.src = data.image;
 
-//  data.hits.foreach(addToHtml)
-// PLAN
-// Use the fetchRecipe function to make a fetch request to edamam
-// the food the function takes in entered as a search query
-// use the first recipe from the hits array in the data that you receive
-// use inner.html- to set the id#"" to the recipe name
-// set the href of #recipe-link to be the recipe's url, also from the received data.
-//
-
+	informationSection.appendChild(cuisine);
+	informationSection.appendChild(calorieInformation);
+	informationSection.appendChild(recipeName);
+	informationSection.appendChild(recipeImage);
+	informationSection.appendChild(linkTag);
+	informationSection.appendChild(diet);
+	console.log(data);
+}
