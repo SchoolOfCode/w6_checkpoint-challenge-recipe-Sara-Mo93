@@ -31,13 +31,14 @@ function HTMLDisplay(data) {
 
 	// console.log(data.calories);
 
-	calorieInformation.innerHTML = "Calories:" + data.calories;
-	diet.innerText = "diet:" + data.dietLabels;
-	cuisine.innerText = "cuisine:" + data.cuisineType;
-	recipeName.innerText = data.label;
-	linkTag.innerHTML = "follow this recipe ";
-	linkTag.href = data.url;
 	recipeImage.src = data.image;
+	calorieInformation.innerHTML = "Calories:" + data.calories.toFixed(0);
+	calorieInformation;
+	diet.innerText = "Diet:" + data.dietLabels;
+	cuisine.innerText = "Cuisine:" + data.cuisineType;
+	recipeName.innerText = data.label;
+	linkTag.innerHTML = "Follow this recipe 🍽️";
+	linkTag.href = data.url;
 
 	informationSection.appendChild(cuisine);
 	informationSection.appendChild(calorieInformation);
