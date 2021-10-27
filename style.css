@@ -1,0 +1,74 @@
+h1 {
+	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+		"Lucida Sans", Arial, sans-serif;
+	font-size: 40px;
+}
+
+.section-heading {
+	font-family: "Zeyada", cursive;
+	font-size: 70px;
+}
+
+body {
+	background-image: url("background.jpg");
+}
+
+#recipe-section {
+	text-align: center;
+	margin-bottom: 80px;
+}
+
+#recipe-button {
+	font-family: "Zeyada", cursive;
+	font-size: 15px;
+	font-weight: bold;
+	border: double;
+}
+
+#recipe-button:hover {
+	background-color: grey;
+}
+
+#food-input {
+	border: double;
+}
+
+.topnav > a {
+	display: inline;
+	text-align: center;
+	padding: 80px;
+	text-decoration: none;
+	font-size: 20px;
+	font-family: monospace;
+	color: black;
+	font-weight: bold;
+}
+.topnav {
+	margin: 0, 40px, 40px, 40px;
+	border: 2px solid;
+	border-color: white;
+}
+
+.topnav a:hover {
+	text-decoration: underline;
+}
+
+#food-display {
+	text-align: center;
+	font-family: monospace;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 18px;
+}
+
+a {
+	display: block;
+	color: black;
+}
+
+img {
+	border: 2px solid;
+}
+p {
+	/* can't find way to stop the last paragraph from starting again at the top */
+}
